@@ -6,7 +6,7 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
   }
 
   var date = new Date().getTime();
-  document.getElementById(pollDomId).style.display = 'none';
+  document.getElementById(pollDomId).style.transform = 'translate(105px)';
   document.getElementById(pollDomId).innerHTML = '';
 
   if (date > pollEndTT || date < pollStartTT) {
@@ -30,11 +30,11 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
     title.innerText = pollTitle;
     title.id = "chat-engine-poll-title";
     closeButton = document.createElement("BUTTON");
+    closeButton.id = "chat-engine-poll-close";
     closeButton.textContent = "X";
-    closeButton.addEventListener("click", function(e) {
-      document.getElementById(pollDomId).style.display = 'none';
+    title.addEventListener("click", function(e) {
+    document.getElementById(pollDomId).style.transform = 'translate(105px)';
     }, false);
-    title.appendChild(closeButton);
     document.getElementById(pollDomId).appendChild(title);
   }
 
@@ -67,14 +67,18 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
       .append("div")
       .attr("class", "bar")
       .style("width", function (d) {
-        return (d.vote*10)+15 + "px";
+        return (d.vote*10)+15 + "%";
       })
       .text(function(d) { return d.vote });
+
+    var total = 1;
+    bars.selectAll("div")
+      .text(function(d) { total += +d.vote });
 
     bars.selectAll("div")
       .text(function(d) { return d.vote })
       .style("width", function (d) {
-        return (d.vote*10)+15 + "px";
+        return (d.vote / total)*100 + "%";
       });
 
     bars
@@ -85,7 +89,7 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
   function increment(message) {
     try{
         if (message.message.data.pollTitle.length > 0)
-            document.getElementById(pollDomId).style.display = 'block';
+            document.getElementById(pollDomId).style.transform = 'translate(0px)';
     } catch(e) {}
     message = message.message
     for (var i=0; i<data.length; i++) {
