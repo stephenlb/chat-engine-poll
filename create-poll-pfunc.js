@@ -1,7 +1,7 @@
 // PubNub Function to create a new Poll in global chat
 // name: chat-engine-poll-init
 // event: after publish or fire
-// channel: a long random string of characters that only the admin knows
+// channel: chat-engine-poll
 
 /* TEST PAYLOAD
 {
