@@ -29,6 +29,7 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
     title = document.createElement("H3");
     title.innerText = pollTitle;
     title.id = "chat-engine-poll-title";
+    document.getElementById("message-to-send").blur();
     closeButton = document.createElement("BUTTON");
     closeButton.id = "chat-engine-poll-close";
     closeButton.textContent = "X";
