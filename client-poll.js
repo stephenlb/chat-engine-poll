@@ -6,7 +6,7 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
   }
 
   var date = new Date().getTime();
-  document.getElementById(pollDomId).style.transform = 'translate(105px)';
+  document.getElementById(pollDomId).style.transform = 'translate(105vw)';
   document.getElementById(pollDomId).innerHTML = '';
 
   if (date > pollEndTT || date < pollStartTT) {
@@ -33,7 +33,7 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
     closeButton.id = "chat-engine-poll-close";
     closeButton.textContent = "X";
     title.addEventListener("click", function(e) {
-    document.getElementById(pollDomId).style.transform = 'translate(105px)';
+      document.getElementById(pollDomId).style.transform = 'translate(105vw)';
     }, false);
     document.getElementById(pollDomId).appendChild(title);
   }
